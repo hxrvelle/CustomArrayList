@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.Comparator;
+
 /**
  * An interface representing a СustomArrayList.
  *
@@ -56,7 +58,7 @@ public interface CustomArrayListInterface<E> extends Iterable<E> {
     /**
      * Performs a QuickSort on the СustomArrayList.
      */
-    void quickSort();
+    void quickSort(Comparator<? super E> comparator);
 
     /**
      * Sets the element at the specified index in the СustomArrayList.

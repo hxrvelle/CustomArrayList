@@ -1,9 +1,11 @@
 import org.example.CustomArrayList;
 import org.junit.*;
 
+import java.util.Comparator;
+
 import static org.junit.Assert.*;
 
-public class CustomArrayListTests {
+public class CustomArrayListPositiveTests {
     private CustomArrayList<Integer> customArrayList;
     @Before
     public void setUp() {
@@ -99,7 +101,7 @@ public class CustomArrayListTests {
         customArrayList.add(1);
         customArrayList.add(2);
 
-        customArrayList.quickSort();
+        customArrayList.quickSort(Comparator.naturalOrder());
 
         assertEquals(3, customArrayList.size());
         assertEquals(Integer.valueOf(1), customArrayList.get(0));

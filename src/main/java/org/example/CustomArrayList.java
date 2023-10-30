@@ -1,5 +1,6 @@
 package org.example;
 
+import java.util.Comparator;
 import java.util.Iterator;
 
 /**
@@ -21,21 +22,15 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      * Adds an element to the end of the CustomArrayList.
      *
      * @param element the element to be added
-     * @throws ClassCastException if not possible to cast an object
      * @return true if the element was successfully added, false otherwise
      */
     @Override
-    public boolean add(E element) throws ClassCastException {
-        try {
-            E[] container = array;
-            array = (E[]) new Object[container.length + 1];
-            System.arraycopy(container, 0, array, 0, container.length);
-            array[array.length - 1] = element;
-            return true;
-        } catch (ClassCastException e) {
-            e.printStackTrace();
-        }
-        return false;
+    public boolean add(E element) {
+        E[] container = array;
+        array = (E[]) new Object[container.length + 1];
+        System.arraycopy(container, 0, array, 0, container.length);
+        array[array.length - 1] = element;
+        return true;
     }
 
     /**
@@ -43,23 +38,20 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      *
      * @param index   the index at which the element should be added
      * @param element the element to be added
-     * @throws IndexOutOfBoundsException if specified index is out of bounds
      * @return true if the element was successfully added, false otherwise
      */
     @Override
-    public boolean add(int index, E element) throws IndexOutOfBoundsException {
-        try {
-            E[] container = array;
-            array = (E[]) new Object[container.length + 1];
-            System.arraycopy(container, 0, array, 0, index);
-            array[index] = element;
-            int remain = container.length - index;
-            System.arraycopy(container, index, array, index + 1, remain);
-            return true;
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index " + index + " is out of bound " + (array.length - 1));
+    public boolean add(int index, E element) {
+        if (index < 0 || index > array.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds " + array.length);
         }
-        return false;
+        E[] container = array;
+        array = (E[]) new Object[container.length + 1];
+        System.arraycopy(container, 0, array, 0, index);
+        array[index] = element;
+        int remain = container.length - index;
+        System.arraycopy(container, index, array, index + 1, remain);
+        return true;
     }
 
     /**
@@ -67,35 +59,34 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      *
      * @param index the index of the element to retrieve
      * @return the element at the specified index
-     * @throws IndexOutOfBoundsException if specified index is out of bounds
      */
     @Override
-    public E get(int index) throws IndexOutOfBoundsException {
-        try {
-            return array[index];
-        } catch (IndexOutOfBoundsException e) {
-            //System.out.println("Index " + index + " is out of bound " + (array.length - 1));
+    public E get(int index) {
+        if (array.length == 0) {
+            throw new IndexOutOfBoundsException("Array is empty.");
         }
-        return (E) ("Index " + index + " is out of bound " + (array.length - 1));
+        if (index < 0 || index >= array.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds " + (array.length - 1));
+        }
+        return array[index];
     }
 
     /**
      * Deletes the element at the specified index in the CustomArrayList.
      *
      * @param index the index of the element to delete
-     * @throws IndexOutOfBoundsException if specified index is out of bounds
      */
     @Override
-    public void delete(int index) throws IndexOutOfBoundsException {
-        try {
-            E[] container = array;
-            array = (E[]) new Object[container.length - 1];
-            System.arraycopy(container, 0, array, 0, index);
-            int remain = container.length - index - 1;
-            System.arraycopy(container, index + 1, array, index, remain);
-        } catch (IndexOutOfBoundsException e){
-            System.out.println("Index " + index + " is out of bound " + (array.length + 1));
+    public void delete(int index) {
+        if (index < 0 || index >= array.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds " + (array.length - 1));
         }
+
+        E[] container = array;
+        array = (E[]) new Object[container.length - 1];
+        System.arraycopy(container, 0, array, 0, index);
+        int remain = container.length - index - 1;
+        System.arraycopy(container, index + 1, array, index, remain);
     }
 
     /**
@@ -103,9 +94,10 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      */
     @Override
     public void deleteAll() {
-        E[] container = array;
+        if (array.length == 0) {
+            return;
+        }
         array = (E[]) new Object[0];
-        System.arraycopy(container, 0, array, 0, 0);
     }
 
     /**
@@ -113,6 +105,9 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      */
     @Override
     public void sortAsc() {
+        if (array.length == 0) {
+            throw new UnsupportedOperationException("Array is empty.");
+        }
         for (int i = array.length - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if ((int) array[j] > (int) array[j + 1]) {
@@ -129,6 +124,9 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      */
     @Override
     public void sortDesc() {
+        if (array.length == 0) {
+            throw new UnsupportedOperationException("Array is empty.");
+        }
         for (int i = array.length - 1; i >= 1; i--) {
             for (int j = 0; j < i; j++) {
                 if ((int) array[j] < (int) array[j + 1]) { // Change the comparison to <
@@ -144,23 +142,26 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      * Performs a QuickSort on the CustomArrayList.
      */
     @Override
-    public void quickSort() {
-        quickSort(0, array.length - 1);
+    public void quickSort(Comparator<? super E> comparator) {
+        if (array.length == 0) {
+            throw new UnsupportedOperationException("Array is empty.");
+        }
+        quickSort(0, array.length - 1, comparator);
     }
 
-    private void quickSort(int low, int high) {
+    private void quickSort(int low, int high, Comparator<? super E> comparator) {
         if (low < high) {
-            int pi = partition(low, high);
-            quickSort(low, pi - 1);
-            quickSort(pi + 1, high);
+            int pi = partition(low, high, comparator);
+            quickSort(low, pi - 1, comparator);
+            quickSort(pi + 1, high, comparator);
         }
     }
 
-    private int partition(int low, int high) {
+    private int partition(int low, int high, Comparator<? super E> comparator) {
         E pivot = array[high];
         int i = (low - 1);
         for (int j = low; j < high; j++) {
-            if (((Comparable<E>) array[j]).compareTo(pivot) <= 0) {
+            if (comparator.compare(array[j], pivot) <= 0) {
                 i++;
                 E temp = array[i];
                 array[i] = array[j];
@@ -178,15 +179,13 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      *
      * @param index   the index at which the element should be set
      * @param element the element to set
-     * @throws IndexOutOfBoundsException if specified index is out of bounds
      */
     @Override
-    public void set(int index, E element) throws IndexOutOfBoundsException {
-        try {
-            array[index] = element;
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index " + index + " is out of bound " + (array.length - 1));;
+    public void set(int index, E element) {
+        if (index < 0 || index >= array.length) {
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds " + (array.length - 1));
         }
+        array[index] = element;
     }
 
     /**
