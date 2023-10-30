@@ -7,10 +7,12 @@ import static org.junit.Assert.*;
 
 public class CustomArrayListPositiveTests {
     private CustomArrayList<Integer> customArrayList;
+    private CustomArrayList<String> customArrayListString;
 
     @Before
     public void setUp() {
         customArrayList = new CustomArrayList<>();
+        customArrayListString = new CustomArrayList<>();
     }
 
     @Test
@@ -99,6 +101,32 @@ public class CustomArrayListPositiveTests {
         for (int i = 0; i < 3; i++) {
             assertEquals(Integer.valueOf(3 - i), customArrayList.get(i));
         }
+    }
+
+    @Test
+    public void testSortAscAtoZ() {
+        customArrayListString.add("Banana");
+        customArrayListString.add("Apple");
+        customArrayListString.add("Cherry");
+
+        customArrayListString.sortAscAtoZ();
+
+        assertEquals("Apple", customArrayListString.get(0));
+        assertEquals("Banana", customArrayListString.get(1));
+        assertEquals("Cherry", customArrayListString.get(2));
+    }
+
+    @Test
+    public void testSortDescZtoA() {
+        customArrayListString.add("Banana");
+        customArrayListString.add("Apple");
+        customArrayListString.add("Cherry");
+
+        customArrayListString.sortDescZtoA();
+
+        assertEquals("Cherry", customArrayListString.get(0));
+        assertEquals("Banana", customArrayListString.get(1));
+        assertEquals("Apple", customArrayListString.get(2));
     }
 
     @Test

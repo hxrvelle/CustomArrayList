@@ -46,14 +46,24 @@ public interface CustomArrayListInterface<E> extends Iterable<E> {
     void deleteAll();
 
     /**
-     * Sorts the СustomArrayList in ascending order.
+     * Sorts the СustomArrayList containing numeric values in ascending order.
      */
     void sortAsc();
 
     /**
-     * Sorts the СustomArrayList in descending order.
+     * Sorts the СustomArrayList containing numeric values in descending order.
      */
     void sortDesc();
+
+    /**
+     * Sorts the CustomArrayList in ascending order (A to Z) using bubble sort.
+     */
+    public void sortAscAtoZ();
+
+    /**
+     * Sorts the CustomArrayList in descending order (Z to A) using bubble sort.
+     */
+    public void sortDescZtoA();
 
     /**
      * Performs a QuickSort on the СustomArrayList.

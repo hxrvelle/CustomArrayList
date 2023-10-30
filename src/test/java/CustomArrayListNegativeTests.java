@@ -9,11 +9,13 @@ import static org.junit.Assert.*;
 
 public class CustomArrayListNegativeTests {
 
-    private CustomArrayListInterface<Integer> customArrayList;
+    private CustomArrayList<Integer> customArrayList;
+    private CustomArrayList<String> customArrayListString;
 
     @Before
     public void setUp() {
         customArrayList = new CustomArrayList<>();
+        customArrayListString = new CustomArrayList<>();
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
@@ -36,13 +38,57 @@ public class CustomArrayListNegativeTests {
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testSortAscUnsupportedOperationException() {
+    public void testSortAscUnsupportedOperationExceptionEmptyArray() {
         customArrayList.sortAsc();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testSortDescUnsupportedOperationException() {
+    public void testSortAscUnsupportedOperationExceptionNonNumericElements() {
+        customArrayListString.add("this");
+        customArrayListString.add("is");
+        customArrayListString.add("test");
+        customArrayList.sortAsc();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortDescUnsupportedOperationExceptionEmptyArray() {
         customArrayList.sortDesc();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortDescUnsupportedOperationExceptionNonNumericElements() {
+        customArrayListString.add("this");
+        customArrayListString.add("is");
+        customArrayListString.add("test");
+        customArrayList.sortDesc();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortAscAtoZUnsupportedOperationExceptionEmptyArray() {
+        customArrayList.sortAscAtoZ();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortAscAtoZUnsupportedOperationExceptionNonStringElements() {
+        customArrayList.add(5);
+        customArrayList.add(1);
+        customArrayList.add(10);
+
+        customArrayList.sortAscAtoZ();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortDescZtoAUnsupportedOperationExceptionEmptyArray() {
+        customArrayList.sortDescZtoA();
+    }
+
+    @Test(expected = UnsupportedOperationException.class)
+    public void testSortDescZtoAUnsupportedOperationExceptionNonStringElements() {
+        customArrayList.add(5);
+        customArrayList.add(1);
+        customArrayList.add(10);
+
+        customArrayList.sortAscAtoZ();
     }
 
     @Test(expected = UnsupportedOperationException.class)
