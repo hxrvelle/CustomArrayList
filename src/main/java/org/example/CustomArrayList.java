@@ -74,7 +74,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
         try {
             return array[index];
         } catch (IndexOutOfBoundsException e) {
-            System.out.println("Index " + index + " is out of bound " + (array.length - 1));
+            //System.out.println("Index " + index + " is out of bound " + (array.length - 1));
         }
         return (E) ("Index " + index + " is out of bound " + (array.length - 1));
     }
