@@ -12,7 +12,8 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
     private E[] array;
 
     /**
-     * Constructs an empty CustomArrayListImpl.
+     * Constructs an empty CustomArrayList.
+     * The initial size of the CustomArrayList is set to 0.
      */
     public CustomArrayList() {
         array = (E[]) new Object[0];
@@ -35,10 +36,12 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Adds an element at the specified index in the CustomArrayList.
+     * If the index is out of bounds, an IndexOutOfBoundsException is thrown.
      *
      * @param index   the index at which the element should be added
      * @param element the element to be added
      * @return true if the element was successfully added, false otherwise
+     * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     @Override
     public boolean add(int index, E element) {
@@ -56,9 +59,11 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Retrieves the element at the specified index in the CustomArrayList.
+     * If the index is out of bounds or the array is empty, an IndexOutOfBoundsException is thrown.
      *
      * @param index the index of the element to retrieve
      * @return the element at the specified index
+     * @throws IndexOutOfBoundsException if the index is out of bounds or the array is empty
      */
     @Override
     public E get(int index) {
@@ -73,8 +78,10 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Deletes the element at the specified index in the CustomArrayList.
+     * If the index is out of bounds, an IndexOutOfBoundsException is thrown.
      *
      * @param index the index of the element to delete
+     * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     @Override
     public void delete(int index) {
@@ -91,6 +98,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Deletes all elements in the CustomArrayList.
+     * If the array is already empty, no action is taken.
      */
     @Override
     public void deleteAll() {
@@ -102,6 +110,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Sorts the CustomArrayList in ascending order.
+     * If the array is empty, an UnsupportedOperationException is thrown.
      */
     @Override
     public void sortAsc() {
@@ -121,6 +130,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Sorts the CustomArrayList in descending order.
+     * If the array is empty, an UnsupportedOperationException is thrown.
      */
     @Override
     public void sortDesc() {
@@ -139,7 +149,10 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
     }
 
     /**
-     * Performs a QuickSort on the CustomArrayList.
+     * Performs a QuickSort on the CustomArrayList using the provided comparator.
+     * If the array is empty, an UnsupportedOperationException is thrown.
+     *
+     * @param comparator the comparator to determine the order of elements
      */
     @Override
     public void quickSort(Comparator<? super E> comparator) {
@@ -176,9 +189,11 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
 
     /**
      * Sets the element at the specified index in the CustomArrayList.
+     * If the index is out of bounds, an IndexOutOfBoundsException is thrown.
      *
      * @param index   the index at which the element should be set
      * @param element the element to set
+     * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     @Override
     public void set(int index, E element) {
@@ -198,6 +213,11 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
         return array.length;
     }
 
+    /**
+     * Provides an iterator for iterating through the elements in the CustomArrayList.
+     *
+     * @return an iterator for the CustomArrayList
+     */
     @Override
     public Iterator<E> iterator() {
         return new org.example.Iterator<>(array);

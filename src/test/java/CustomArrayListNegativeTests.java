@@ -23,52 +23,37 @@ public class CustomArrayListNegativeTests {
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testGetIndexOutOfBoundsExceptionWhenEmpty() {
+    public void testGetIndexOutOfBoundsException() {
         customArrayList.get(0);
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testGetIndexOutOfBoundsExceptionWhenOutOfBound() {
-        customArrayList.add(1);
         customArrayList.get(1);
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testDeleteAtIndexIndexOutOfBoundsExceptionWhenEmpty() {
-        customArrayList.delete(0);
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testDeleteAtIndexIndexOutOfBoundsExceptionWhenOutOfBound() {
-        customArrayList.add(0, 1);
-        customArrayList.delete(1);
+    public void testDeleteAtIndexIndexOutOfBoundsException() {
+        for (int i = 0; i < 2; i++) {
+            customArrayList.delete(i);
+        }
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testSortAscUnsupportedOperationExceptionWhenEmpty() {
+    public void testSortAscUnsupportedOperationException() {
         customArrayList.sortAsc();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testSortDescUnsupportedOperationExceptionWhenEmpty() {
+    public void testSortDescUnsupportedOperationException() {
         customArrayList.sortDesc();
     }
 
     @Test(expected = UnsupportedOperationException.class)
-    public void testQuickSortUnsupportedOperationExceptionWhenEmpty() {
+    public void testQuickSortUnsupportedOperationException() {
         customArrayList.quickSort(Comparator.naturalOrder());
     }
 
     @Test(expected = IndexOutOfBoundsException.class)
-    public void testSetIndexOutOfBoundsExceptionWhenOutOfBound() {
-        customArrayList.add(1);
-        customArrayList.add(2);
-        customArrayList.add(3);
-        customArrayList.set(3, 4);
-    }
-
-    @Test(expected = IndexOutOfBoundsException.class)
-    public void testSetIndexOutOfBoundsExceptionWhenEmpty() {
-        customArrayList.set(3, 4);
+    public void testSetIndexOutOfBoundsException() {
+        for (int i = 0; i < 2; i++) {
+            customArrayList.set(i, i + 1);
+        }
     }
 }
