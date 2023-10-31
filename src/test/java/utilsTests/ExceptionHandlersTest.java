@@ -31,24 +31,24 @@ public class ExceptionHandlersTest {
     @Test
     public void testCheckNonNumericElementsWithNumbers() {
         Integer[] array = {1, 2, 3};
-        ExceptionHandlers.checkNonNumericElements(array); // This should not throw an exception
+        ExceptionHandlers.checkNonNumericElements(array);
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testCheckNonNumericElementsWithNonNumbers() {
         String[] array = {"one", "two", "three"};
-        ExceptionHandlers.checkNonNumericElements(array); // This should throw an UnsupportedOperationException
+        ExceptionHandlers.checkNonNumericElements(array);
     }
 
     @Test
     public void testCheckNonStringElementsWithStrings() {
         String[] array = {"one", "two", "three"};
-        ExceptionHandlers.checkNonStringElements(array); // This should not throw an exception
+        ExceptionHandlers.checkNonStringElements(array);
     }
 
     @Test(expected = UnsupportedOperationException.class)
     public void testCheckNonStringElementsWithNonStrings() {
         Integer[] array = {1, 2, 3};
-        ExceptionHandlers.checkNonStringElements(array); // This should throw an UnsupportedOperationException
+        ExceptionHandlers.checkNonStringElements(array);
     }
 }

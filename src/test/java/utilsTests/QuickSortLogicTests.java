@@ -43,7 +43,7 @@ public class QuickSortLogicTests {
     @Test
     public void testQuickSortWithCustomComparator() {
         Integer[] array = {3, 1, 2, 5, 4};
-        quickSortLogic.quickSort(array, (a, b) -> b - a); // Sort in descending order
+        quickSortLogic.quickSort(array, (a, b) -> b - a);
         Integer[] expected = {5, 4, 3, 2, 1};
         assertArrayEquals(expected, array);
     }

@@ -19,7 +19,7 @@ public class StringComparatorTests {
         String str1 = "apple";
         String str2 = "banana";
         int result = stringComparator.compareStrings(str1, str2);
-        assertTrue(result < 0); // "apple" comes before "banana" in lexicographic order
+        assertTrue(result < 0);
     }
 
     @Test
