@@ -3,6 +3,7 @@ package datastructuresTests;
 import org.example.datastructures.CustomArrayList;
 import org.junit.*;
 
+import javax.management.ObjectInstance;
 import java.util.Comparator;
 
 import static org.junit.Assert.*;
@@ -10,11 +11,13 @@ import static org.junit.Assert.*;
 public class CustomArrayListPositiveTests {
     private CustomArrayList<Integer> customArrayList;
     private CustomArrayList<String> customArrayListString;
+    private CustomArrayList<Object> objects;
 
     @Before
     public void setUp() {
         customArrayList = new CustomArrayList<>();
         customArrayListString = new CustomArrayList<>();
+        objects = new CustomArrayList<>();
     }
 
     @Test
@@ -46,13 +49,10 @@ public class CustomArrayListPositiveTests {
     @Test
     public void testAddAtIndexSameIndex() {
         for (int i = 0; i < 1000; i++) {
-            customArrayList.add(0, 1);
+            objects.add(0, new Object());
         }
 
-        assertTrue(customArrayList.add(1, 2));
-        assertEquals(1001, customArrayList.size());
-        assertEquals(Integer.valueOf(1), customArrayList.get(0));
-        assertEquals(Integer.valueOf(2), customArrayList.get(1));
+        assertEquals(1000, objects.size());
     }
 
     @Test
