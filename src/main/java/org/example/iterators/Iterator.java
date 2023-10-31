@@ -1,4 +1,4 @@
-package org.example;
+package org.example.iterators;
 
 /**
  * A custom iterator for iterating through an array of elements.

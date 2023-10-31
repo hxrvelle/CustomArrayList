@@ -1,11 +1,10 @@
-import org.example.CustomArrayList;
-import org.example.CustomArrayListInterface;
+package datastructuresTests;
+
+import org.example.datastructures.CustomArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Comparator;
-
-import static org.junit.Assert.*;
 
 public class CustomArrayListNegativeTests {
 
@@ -24,9 +23,14 @@ public class CustomArrayListNegativeTests {
         customArrayList.add(2, 2);
     }
 
+    @Test(expected = UnsupportedOperationException.class)
+    public void testGetUnsupportedOperationException() {
+        customArrayList.get(0);
+    }
+
     @Test(expected = IndexOutOfBoundsException.class)
     public void testGetIndexOutOfBoundsException() {
-        customArrayList.get(0);
+        customArrayList.add(1);
         customArrayList.get(1);
     }
 

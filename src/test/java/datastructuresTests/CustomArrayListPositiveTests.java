@@ -1,4 +1,6 @@
-import org.example.CustomArrayList;
+package datastructuresTests;
+
+import org.example.datastructures.CustomArrayList;
 import org.junit.*;
 
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.datastructures;
 
 import java.util.Comparator;
 
@@ -76,7 +76,7 @@ public interface CustomArrayListInterface<E> extends Iterable<E> {
      * @param index   the index at which the element should be set
      * @param element the element to set
      */
-    void set(int index, E element);
+    boolean set(int index, E element);
 
     /**
      * Retrieves the current size of the СustomArrayList.
