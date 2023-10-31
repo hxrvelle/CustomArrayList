@@ -44,6 +44,18 @@ public class CustomArrayListPositiveTests {
     }
 
     @Test
+    public void testAddAtIndexSameIndex() {
+        for (int i = 0; i < 1000; i++) {
+            customArrayList.add(0, 1);
+        }
+
+        assertTrue(customArrayList.add(1, 2));
+        assertEquals(1001, customArrayList.size());
+        assertEquals(Integer.valueOf(1), customArrayList.get(0));
+        assertEquals(Integer.valueOf(2), customArrayList.get(1));
+    }
+
+    @Test
     public void testGet() {
         for (int i = 1; i <= 2; i++) {
             customArrayList.add(i);
