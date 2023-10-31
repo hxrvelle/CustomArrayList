@@ -76,7 +76,7 @@ public interface CustomArrayListInterface<E> extends Iterable<E> {
      * @param index   the index at which the element should be set
      * @param element the element to set
      */
-    boolean set(int index, E element);
+    void set(int index, E element);
 
     /**
      * Retrieves the current size of the СustomArrayList.

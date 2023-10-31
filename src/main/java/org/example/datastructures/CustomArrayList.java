@@ -212,10 +212,9 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      * @throws IndexOutOfBoundsException if the index is out of bounds
      */
     @Override
-    public boolean set(int index, E element) {
+    public void set(int index, E element) {
         checkIndex(array, index);
         array[index] = element;
-        return true;
     }
 
     /**
