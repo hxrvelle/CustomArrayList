@@ -41,7 +41,7 @@ public class QuickSortLogic<E> {
     }
 
     /**
-     * The partition method is responsible for selecting a pivot element (a selected element from the array that serves as a reference point for partitioning the array into two subarrays during the sorting process) and partitioning the array into two subarrays: elements less than or equal to the pivot and elements greater than the pivot.
+     * The partition method is responsible for selecting a pivot element (a reference point for partitioning the array into two subarrays during the sorting process) and partitioning the array into two subarrays: elements less than or equal to the pivot and elements greater than the pivot.
      *
      * The steps are as follows:
      * <ol>

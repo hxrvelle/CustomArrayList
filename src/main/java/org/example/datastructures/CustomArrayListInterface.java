@@ -58,12 +58,12 @@ public interface CustomArrayListInterface<E> extends Iterable<E> {
     /**
      * Sorts the CustomArrayList in ascending order (A to Z) using bubble sort.
      */
-    public void sortAscAtoZ();
+    void sortAscAtoZ();
 
     /**
      * Sorts the CustomArrayList in descending order (Z to A) using bubble sort.
      */
-    public void sortDescZtoA();
+    void sortDescZtoA();
 
     /**
      * Performs a QuickSort on the СustomArrayList.

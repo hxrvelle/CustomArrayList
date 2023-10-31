@@ -157,6 +157,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      * Sorts the CustomArrayList in ascending order (A to Z) using bubble sort.
      * @throws UnsupportedOperationException if the array is empty or if the array contains non-string elements
      */
+    @Override
     public void sortAscAtoZ() {
         checkEmpty(array);
         checkNonStringElements(array);
@@ -176,6 +177,7 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      * Sorts the CustomArrayList in descending order (Z to A) using bubble sort.
      * @throws UnsupportedOperationException if the array is empty or if the array contains non-string elements
      */
+    @Override
     public void sortDescZtoA() {
         checkEmpty(array);
         checkNonStringElements(array);
