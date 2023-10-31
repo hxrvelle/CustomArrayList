@@ -50,14 +50,22 @@ public class CustomArrayList<E> implements CustomArrayListInterface<E> {
      */
     @Override
     public boolean add(int index, E element) {
-        checkIndex(array, index);
-
         E[] container = array;
-        array = (E[]) new Object[container.length + 1];
-        System.arraycopy(container, 0, array, 0, index);
-        array[index] = element;
-        int remain = container.length - index;
-        System.arraycopy(container, index, array, index + 1, remain);
+        if (array.length > 0) {
+            checkIndex(array, index);
+
+            array = (E[]) new Object[container.length + 1];
+            System.arraycopy(container, 0, array, 0, index);
+            array[index] = element;
+            int remain = container.length - index;
+            System.arraycopy(container, index, array, index + 1, remain);
+        } else if (array.length == 0) {
+            array = (E[]) new Object[1];
+            array[0] = element;
+        } else if (array.length == 0 && index > 0) {
+            array = (E[]) new Object[1];
+            array[0] = element;
+        }
         return true;
     }
 
